@@ -63,6 +63,28 @@ func merge(l *node, r *node) *node {
 	}
 }
 
+func union(n1 *node, n2 *node) *node {
+	if n1 == nil {
+		return n2
+	} else if n2 == nil {
+		return n1
+	}
+
+	if n1.priority < n2.priority {
+		l, r := split(n2, n1.key)
+		n1.left = union(n1.left, l)
+		n1.right = union(n1.right, r)
+
+		return n1
+	} else {
+		l, r := split(n1, n2.key)
+		n2.left = union(n1.left, l)
+		n2.right = union(n2.right, r)
+
+		return n2
+	}
+}
+
 func insert(n *node, key, priority int) *node {
 	if n == nil || priority < n.priority {
 		l, r := split(n, key)

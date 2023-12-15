@@ -34,3 +34,8 @@ func Merge(l, r Tree) (t Tree) {
 	t.root = merge(l.root, r.root)
 	return
 }
+
+func Union(l, r Tree) (t Tree) {
+	t.root = union(l.root, r.root)
+	return
+}
